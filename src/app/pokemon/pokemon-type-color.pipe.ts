@@ -45,7 +45,7 @@ export class PokemonTypeColorPipe implements PipeTransform {
         color = 'deep-orange';
         break;
       default:
-        color = 'grey';
+        color = 'grey lighten-1';
         break;
     }
   

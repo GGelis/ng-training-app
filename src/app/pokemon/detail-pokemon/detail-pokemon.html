@@ -1,49 +1,81 @@
 <div *ngIf="pokemon" class="row" @testAnimation>
-    <div class="col s12 m8 offset-m2">
-        <h2 class="header center">{{ pokemon.name }}</h2>
-        <div class="card horizontal hoverable">
-            <div class="card-image">
-                <img [src]="pokemon.picture">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <table class="bordered striped">
-                        <tbody>
-                            <tr>
-                                <td>Nom</td>
-                                <td><strong>{{ pokemon.name }}</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Points de vie</td>
-                                <td><strong>{{ pokemon.hp }}</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Dégâts</td>
-                                <td><strong>{{ pokemon.cp }}</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Types</td>
-                                <td>
-                                    <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">{{
-                                        type }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Date de création</td>
-                                <td><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
-                            </tr>
-                        </tbody>
-                    </table>
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ pokemon.name }}</h2>
+
+    <div class="card horizontal hoverable">
+      <!-- Image -->
+      <div class="card-image">
+        <img [src]="pokemon.picture">
+      </div>
+
+      <!-- Contenu -->
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ pokemon.name }}</strong></td>
+              </tr>
+
+              <!-- Points de vie avec barre -->
+              <tr>
+                <td>
+                  <i class="material-icons left red-text">favorite</i>PV
+                </td>
+                <td>
+                <div class="progress"
+                    style="position: relative; height: 20px; border-radius: 10px; overflow: hidden; background: #ffcdd2;">
+                    <div class="determinate red darken-2" [style.width.%]="pokemon.hp" style="border-radius: 10px 0 0 10px;"></div>
+                    <span style="position:absolute; width:100%; text-align:center; top:0; left:0; font-weight:bold; color:white;">
+                        {{pokemon.hp}} / 100
+                    </span>
                 </div>
-                <div class="card-action">
-                    <a (click)="goToPokemonList()">Retour</a>
-                    <a (click)="goToEditPokemon(pokemon)">Editer</a>
-                    <a (click)="deletePokemon(pokemon)">Supprimer</a>
+                </td>
+              </tr>
+
+              <!-- Dégâts avec barre -->
+              <tr>
+                  <td>⚔️ Dégâts</td>
+                <td>
+                <div class="progress"
+                    style="position: relative; height: 20px; border-radius: 10px; overflow: hidden; background: #bbdefb;">
+                    <div class="determinate blue darken-2" [style.width.%]="pokemon.cp" style="border-radius: 10px 0 0 10px;"></div>
+                    <span style="position:absolute; width:100%; text-align:center; top:0; left:0; font-weight:bold; color:white;">
+                        {{pokemon.cp}} / 100
+                    </span>
                 </div>
-            </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Types</td>
+                <td>
+                  <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">
+                    {{ type }}
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Date de création</td>
+                <td><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
+        <!-- Actions -->
+        <div class="card-action">
+          <a (click)="goToPokemonList()">Retour</a>
+          <a (click)="goToEditPokemon(pokemon)">Éditer</a>
+          <a (click)="deletePokemon(pokemon)">Supprimer</a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
 <h4 *ngIf='!pokemon' class="center">
-    <app-loader></app-loader>
+  <app-loader></app-loader>
 </h4>

@@ -1,0 +1,21 @@
+.pokemon-banner {
+  background: linear-gradient(90deg, #f44336, #ffeb3b, #f44336);
+  background-size: 200% 100%;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  animation: gradientMove 5s linear infinite;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+

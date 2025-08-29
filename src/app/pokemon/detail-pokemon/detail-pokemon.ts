@@ -12,7 +12,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   selector: 'app-detail-pokemon',
   imports: [LoaderComponent,CommonModule,PokemonTypeColorPipe],
   templateUrl: './detail-pokemon.html',
-  styles: ``,
+  styleUrls: ['./detail-pokemon.scss'],
   animations: [
     trigger('testAnimation', [
       transition(':enter', [

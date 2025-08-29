@@ -1,26 +1,44 @@
 <div class="container">
   <div class="row">
-    <app-search-pokemon></app-search-pokemon>
-    <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
-        <div (click)="goToPokemon(pokemon)" class="card horizontal" pkmnBorderCard="green">
-            <div class="card-image">
-                <img [src]="pokemon.picture"/>
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <p>{{pokemon.name}}</p>
-                    <p><small>{{pokemon.created | date:"dd/MM/yyyy"}}</small></p>
-                    <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">
-                        {{type}}
-                    </span>
-                </div>
-            </div>
-        </div>
+    <div class="pokemon-banner">
+        <h3>{{ bannerText }}</h3>
     </div>
-  </div>  
+    <!-- Barre de recherche -->
+    <app-search-pokemon></app-search-pokemon>
+
+    <!-- Liste des Pokémon -->
+    <div *ngFor="let pokemon of pokemonList" class="col s12 m6 l4">
+      <div (click)="goToPokemon(pokemon)" class="card hoverable" style="cursor:pointer;">
+        
+        <!-- Image centrée -->
+        <div class="card-image center-align" style="padding:10px;">
+          <img [src]="pokemon.picture" alt="{{ pokemon.name }}" style="max-width:120px;">
+        </div>
+
+        <!-- Contenu de la carte -->
+        <div class="card-stacked">
+          <div class="card-content">
+            <h5 class="truncate">{{ pokemon.name }}</h5>
+            <small>{{ pokemon.created | date:"dd/MM/yyyy" }}</small>
+
+            <!-- Types avec badges -->
+            <div class="d-flex flex-wrap" style="margin-top:5px;">
+              <span *ngFor="let type of pokemon.types" [class]="type | pokemonTypeColor" style="margin:3px;">
+                {{ type }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- Bouton flottant pour ajouter un Pokémon -->
 <a 
-    class="btn-floating btn-large waves-effect waves-light red z-depth-3"
-    style="position: fixed; bottom: 25px; right: 25px;"
-    routerLink="/pokemon/add">+</a>
+  class="btn-floating btn-large waves-effect waves-light red z-depth-3"
+  style="position: fixed; bottom: 25px; right: 25px;"
+  routerLink="/pokemon/add">
+  +
+</a>
