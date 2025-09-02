@@ -6,7 +6,7 @@ import { PokemonFormComponent } from '../pokemon-form/pokemon-form';
   selector: 'app-add-pokemon',
   imports: [PokemonFormComponent],
   template: `
-    <h2 class="center">Ajouter un pokémon</h2>
+    <h2 class="center card">Ajouter un pokémon</h2>
     <app-pokemon-form [pokemon]="pokemon"></app-pokemon-form>
   `,
   styles: ``

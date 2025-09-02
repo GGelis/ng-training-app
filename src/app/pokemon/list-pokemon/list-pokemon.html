@@ -1,35 +1,43 @@
 <div class="container">
-  <div class="row">
-    <div class="pokemon-banner">
+  <div class="pokemon-banner">
         <h3>{{ bannerText }}</h3>
     </div>
+  <div class="row">
     <!-- Barre de recherche -->
     <app-search-pokemon></app-search-pokemon>
 
     <!-- Liste des Pokémon -->
-    <div *ngFor="let pokemon of pokemonList" class="col s12 m6 l4">
-      <div (click)="goToPokemon(pokemon)" class="card hoverable" style="cursor:pointer;">
-        
-        <!-- Image centrée -->
-        <div class="card-image center-align" style="padding:10px;">
-          <img [src]="pokemon.picture" alt="{{ pokemon.name }}" style="max-width:120px;">
-        </div>
+    <div class="row pokemon-drop-list" dndDropzone>
+      <div *ngFor="let pokemon of pokemonList; let i = index"
+           class="col s12 m6 l4 pokemon-card" [style]="generateBordelColor(pokemon.types)" 
+           [dndDraggable]="pokemon"
+           [dndEffectAllowed]="'move'"
+           (dndStart)="dndStart($event, i)"
+           (dndEnd)="dndEnd($event)"
+           #card>
+        <div (dblclick)="goToPokemon(pokemon)" class="card hoverable" style="cursor:pointer;">
 
-        <!-- Contenu de la carte -->
-        <div class="card-stacked">
-          <div class="card-content">
-            <h5 class="truncate">{{ pokemon.name }}</h5>
-            <small>{{ pokemon.created | date:"dd/MM/yyyy" }}</small>
+          <!-- Image centrée -->
+          <div class="card-image center-align" style="padding:10px;">
+            <img [src]="pokemon.picture" alt="{{ pokemon.name }}" style="max-width:120px;">
+          </div>
 
-            <!-- Types avec badges -->
-            <div class="d-flex flex-wrap" style="margin-top:5px;">
-              <span *ngFor="let type of pokemon.types" [class]="type | pokemonTypeColor" style="margin:3px;">
-                {{ type }}
-              </span>
+          <!-- Contenu de la carte -->
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="truncate pokemon-name">{{ pokemon.name }}</h5>
+              <p class="pokemon-date"><small>{{ pokemon.created | date:"dd/MM/yyyy" }}</small></p>
+
+              <!-- Types avec badges -->
+              <div class="d-flex flex-wrap pokemon-types" style="margin-top:5px;">
+                <span *ngFor="let type of pokemon.types" [class]="type | pokemonTypeColor" style="margin:3px;">
+                  {{ type }}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>

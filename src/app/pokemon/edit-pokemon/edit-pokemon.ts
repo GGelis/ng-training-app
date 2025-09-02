@@ -10,8 +10,8 @@ import { PokemonFormComponent } from '../pokemon-form/pokemon-form';
   selector: 'app-edit-pokemon',
   imports: [CommonModule,PokemonFormComponent],
   template: `
-    <h2 class="center">Editer {{pokemon?.name}}</h2>
-    <p *ngIf="pokemon" class="center">
+    <h2 class="center card">Editer {{pokemon?.name}}</h2>
+    <p *ngIf="pokemon" class="center card">
       <img [src]="pokemon.picture">
     </p>
     <app-pokemon-form *ngIf="pokemon" [pokemon]="pokemon"></app-pokemon-form>
