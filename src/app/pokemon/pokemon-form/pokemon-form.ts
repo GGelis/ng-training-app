@@ -60,7 +60,6 @@ export class PokemonFormComponent {
   }
 
   onSubmit() {
-    console.log('Submit form !');
     
     if(this.isEdit) {
       this.router.navigate(['/pokemon', this.pokemon?.id]);

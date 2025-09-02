@@ -30,6 +30,9 @@
                 class="card-panel red accent-1">
                 L'image du pokémon est requise.
           </div>
+          <div class="preview-container" *ngIf="pokemon.picture">
+              <img [src]="pokemon.picture" alt="Lien non valide" class="pokemon-preview responsive-img z-depth-2">
+            </div>
         </div>
   
         <!-- Pokemon hp -->
